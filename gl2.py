@@ -10,6 +10,7 @@ Referencias:
 4. Formato de archivo BMP: https://en.wikipedia.org/wiki/BMP_file_format#:~:text=The%20BMP%20file%20format%2C%20also,and%20OS%2F2%20operating%20systems. 
 5. Acceder a una variable de otra clase: https://programmerclick.com/article/14131486210/
 6. Algoritmo de LineaBresenham: https://es.wikipedia.org/wiki/Algoritmo_de_Bresenham#:~:text=El%20Algoritmo%20de%20Bresenham%20es,solo%20realiza%20cálculos%20con%20enteros.
+7. Simular un do-while: https://www.freecodecamp.org/espanol/news/python-bucle-do-while-ejemplos-de-bucles/#:~:text=Para%20crear%20un%20bucle%20do%20while%20en%20Python%2C%20necesitas%20modificar,verdadero%20se%20ejecutará%20otra%20vez.
 """
 
 import Render2 as Rend2 #Importando la clase Render.
@@ -169,6 +170,13 @@ def glVertex(x, y): #Función que pueda cambiar el color de un punto de la panta
 
 #Función que crea una línea entre dos puntos. Esta tiene que estar en el rango de 0 a 1.
 def glLine(X1, Y1, X2, Y2):
+    #Ubicar un punto en el viewport.
+    global ancho, alto, equis, ye #Variables globales que se usarán para definir el área de la imagen sobre la que se va a poder dibujar el punto.
+
+    #Obteniendo el centro del viewport.
+    x0 = int(equis + (ancho/2))
+    y0 = int(ye + (alto/2))
+
     #Distancia que se desplaza en cada eje.
     dY = Y2 - Y1
     dX = X2 - X1
@@ -198,11 +206,11 @@ def glLine(X1, Y1, X2, Y2):
         dX, dY = dY, dX
     
     # 3. Inicializando valores (y de error)
-    x = X1
-    y = Y1
-    avR = 2 * dY
-    av = (avR - dX)
-    avI = av - dX
+    x = X1 #Coordenada X del punto inicial.
+    y = Y1 #Coordenada Y del punto inicial.
+    avR = 2 * dY #Avance recto.
+    av = (avR - dX) #Avance recto.
+    avI = av - dX #Avance inclinado.
 
     #Verificando los valores.
     print("dX: ", x)
@@ -211,10 +219,21 @@ def glLine(X1, Y1, X2, Y2):
     print("avR: ", avR)
     print("avI: ", avI)
 
-    # 4. Dibujando la línea.
-    while x < X2:
-        print(x, y)
-        glVertex(x, y) #Dibujando como mínimo un punto.
+    # 4. Dibujando la línea. 
+    while x != X2:
+         # if x <= X2: #Si el punto actual es el punto final, entonces se termina el ciclo.
+        #     break
+
+        print("Hola ", x, y)
+        
+        #Moviendo el punto a la posición deseada.
+        movx = x0 + int(x * (ancho/2))
+        movy = y0 + int(y * (alto/2))
+
+        print("Movimientos: ", movx, movy)
+
+        Rend2.Line(movx, movy) #Creando la línea.
+
         print(av, "") #Debuggeo para ver los valores de error global que aparecen.
 
         if av >= 0: #Aavance inclinado.
@@ -227,12 +246,6 @@ def glLine(X1, Y1, X2, Y2):
             x = x + IncXr #X aumenta en recto.
             y = y + IncYr #Y aumenta en recto.
             av = av + avR #Avance recto.
-
-    #Cuando x sea igual a X2, entonces se termina la ejecución.
-        if x == X2:
-             break
-
-
 
 def glColor(r, g, b): #Función con la que se pueda cambiar el color con el que funciona glVertex(). Los parámetros deben ser números en el rango de 0 a 1.
     

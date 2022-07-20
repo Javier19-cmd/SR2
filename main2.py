@@ -23,7 +23,7 @@ def main():
     glColor(0., 0.2, 0.1) #Definiendo el color del punto.
     #glVertex(1, 1) #Definiendo el punto inicial del punto.
     #x0, y0, x1, y1 = 0, 0, 1, 1
-    glLine(0.1, 0.1, 0.2, 0.2) #Dibujando la línea.
+    glLine(0.1, 0.1, 0.3, 0.3) #Dibujando la línea.
     glFinish() #Escribiendo la ventana.
 
 main()
