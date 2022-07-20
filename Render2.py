@@ -158,12 +158,27 @@ def Vertex(x, y):
     print("Coordenadas del punto: ", equis, ye)
     print("Punto: ", framebuffer[equis][ye])
 
+def Line(x, y):
+    #En este método se dibuja una línea en el viewport.
+    global equis, ye #Instanciando las variables globales de las posiciones del punto.
+
+    #Llenando las variables globales.
+    equis = x
+    ye = y
+
+    #print(equis, ye)
+
+    #Colocar el punto en el viewport.
+    framebuffer[equis][ye] = colorA
+
+    print("Coordenadas del punto: ", equis, ye)
+    print("Punto: ", framebuffer[equis][ye])
 
 #Método que escribe el archivo bmp.
 def write():
         
         #Se abre el archivo con la forma de bw.
-        f = open("SR1.bmp", "bw")
+        f = open("SR2.bmp", "bw")
 
         #Se escribe el encabezado del archivo.
 

@@ -9,6 +9,7 @@ Referencias:
 3. Hacer un return de múltiples variables: https://www.youtube.com/watch?v=QOQTYuynU3w&ab_channel=ProgramaResuelto
 4. Formato de archivo BMP: https://en.wikipedia.org/wiki/BMP_file_format#:~:text=The%20BMP%20file%20format%2C%20also,and%20OS%2F2%20operating%20systems. 
 5. Acceder a una variable de otra clase: https://programmerclick.com/article/14131486210/
+6. Algoritmo de LineaBresenham: https://es.wikipedia.org/wiki/Algoritmo_de_Bresenham#:~:text=El%20Algoritmo%20de%20Bresenham%20es,solo%20realiza%20cálculos%20con%20enteros.
 """
 
 import Render2 as Rend2 #Importando la clase Render.
@@ -32,7 +33,11 @@ ye = 0
 #Variable global para la función glColor.
 Color = 0
 
-#Render = None #Instanciando la clase de Render.
+#Variables para la línea.
+equis0 = 0
+ye0 = 0
+equis1 = 0
+ye1 = 0
 
 #Pregunar si está bien implementada esta función.
 def glInit(): #Se usará para poder inicializar cualquier objeto interno que requiera el software de render.
@@ -161,6 +166,73 @@ def glVertex(x, y): #Función que pueda cambiar el color de un punto de la panta
     #print("Hola ", movx, movy) #Debugging.
 
     Rend2.Vertex(movx, movy) #Creando el punto.
+
+#Función que crea una línea entre dos puntos. Esta tiene que estar en el rango de 0 a 1.
+def glLine(X1, Y1, X2, Y2):
+    #Distancia que se desplaza en cada eje.
+    dY = Y2 - Y1
+    dX = X2 - X1
+
+    # 1. Incrementos para las secciones con avance inclinado.
+    if dY >= 0: #Si la distancia en el eje Y es mayor a 0, entonces se incrementa en 1.
+        IncYi = 1 #Incremento inclinado.
+    else: #Si la distancia en el eje Y es menor a 0, entonces se incrementa en -1.
+        dY = -dY
+        IncYi = -1 #Incremento inclinado.
+
+    if dX >= 0: #Si la distancia en el eje X es mayor a 0, entonces se incrementa en 1.
+        IncXi = 1 #Incremento inclinado.
+    else: #Si la distancia en el eje X es menor a 0, entonces se incrementa en -1.
+        dX = -dX
+        IncXi = -1 #Incremento inclinado.
+    
+    # 2. Incrementos para las secciones con avance recto.
+    if dX >= dY:
+        IncYr = 0 #Incremento recto.
+        IncXr = IncXi #Incremento recto.
+    else:
+        IncXr = 0
+        IncYr = IncYi
+
+        #Cuando dY es mayor que dX, se intercambian, para reutiliar el código.
+        dX, dY = dY, dX
+    
+    # 3. Inicializando valores (y de error)
+    x = X1
+    y = Y1
+    avR = 2 * dY
+    av = (avR - dX)
+    avI = av - dX
+
+    #Verificando los valores.
+    print("dX: ", x)
+    print("dY: ", y)
+    print("av: ", av)
+    print("avR: ", avR)
+    print("avI: ", avI)
+
+    # 4. Dibujando la línea.
+    while x < X2:
+        print(x, y)
+        glVertex(x, y) #Dibujando como mínimo un punto.
+        print(av, "") #Debuggeo para ver los valores de error global que aparecen.
+
+        if av >= 0: #Aavance inclinado.
+
+            x = x + IncXi #X aumenta en inclinado.
+            y = y + IncYi #Y aumenta en inclinado.
+            av = av + avI #Avance inclinado.
+        
+        else: #Avance recto.
+            x = x + IncXr #X aumenta en recto.
+            y = y + IncYr #Y aumenta en recto.
+            av = av + avR #Avance recto.
+
+    #Cuando x sea igual a X2, entonces se termina la ejecución.
+        if x == X2:
+             break
+
+
 
 def glColor(r, g, b): #Función con la que se pueda cambiar el color con el que funciona glVertex(). Los parámetros deben ser números en el rango de 0 a 1.
     
