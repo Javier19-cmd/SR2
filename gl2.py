@@ -196,27 +196,39 @@ def glLine(x0, y0, x1, y1):
     threshold = dx
     y = y0
 
+    print("y antes del for loop", y)
+
      #Obteniendo el centro del viewport.
     Cx = int(x0 + (ancho/2))
     Cx1 = int(x1 + (ancho/2))
 
+    Cy = int(y0 + (alto/2))
+    Cy1 = int(y1 + (alto/2))
+
     #Moviendo el punto a la posición deseada.
     movx = Cx + int(x0 * (ancho/2))
     movx1 = Cx1 + int(x1 * (ancho/2))
+
+    movy = Cy + int(y0 * (alto/2))
+    movy1 = Cy1 + int(y1 * (alto/2))
+
+    print("Movimientos en x antes del for loop", movx, movx1)
     
     #Haciendo la línea.
-    for x in range(movx, movx1 + 1):
+    for x in range(movx, movx1):
 
         offset += dy * 2 #Incrementando el offset.
 
         if offset >= threshold: #Si el offset es mayor o igual que el threshold, entonces se cambia el valor de y.
             y += 1 if y0 < y1 else -1
             threshold += 2 * dx
+
+            print(x)
  
-        if steep: #
-            Rend2.Vertex(int(y), x)
-        else:
-            Rend2.Vertex(x, int(y))
+        if steep: #Si la línea es vertical, entonces se cambia el orden de los puntos.
+            Rend2.Vertex(movy, x)
+        else: #Si la línea es horizontal, entonces se cambia el orden de los puntos.
+            Rend2.Vertex(x, movy)
 
     #Rend2.Line(movx1, movy1, movx2, movy2) #Creando el punto.
 
