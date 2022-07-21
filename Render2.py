@@ -158,6 +158,7 @@ def Vertex(x, y):
     #print("Coordenadas del punto: ", equis, ye)
     print("Punto: ", framebuffer[equis][ye])
 
+"""
 def Line(x, y):
     #En este método se dibuja una línea en el viewport.
     global equis, ye #Instanciando las variables globales de las posiciones del punto.
@@ -174,7 +175,7 @@ def Line(x, y):
 
     #print("Coordenadas del punto: ", equis, ye)
     print("Punto: ", framebuffer[equis][ye])
-
+"""
 #Método que escribe el archivo bmp.
 def write():
         

@@ -232,12 +232,12 @@ def glLine(x0, y0, x1, y1):
 
         if steep: #Si la línea es vertical, entonces se cambia el orden de los puntos.
             #print(y, x)
-            Rend2.Line(y, x)
-            #Rend2.Vertex(y, x)
+            #Rend2.Line(y, x)
+            Rend2.Vertex(y, x)
         else: #Si la línea es horizontal, entonces se cambia el orden de los puntos.
             #print(x, y)
-            Rend2.Line(x, y)
-            #Rend2.Vertex(x, y)
+            #Rend2.Line(x, y)
+            Rend2.Vertex(x, y)
 
 
 def glColor(r, g, b): #Función con la que se pueda cambiar el color con el que funciona glVertex(). Los parámetros deben ser números en el rango de 0 a 1.
