@@ -9,7 +9,7 @@ Referencias:
 3. Hacer un return de múltiples variables: https://www.youtube.com/watch?v=QOQTYuynU3w&ab_channel=ProgramaResuelto
 4. Formato de archivo BMP: https://en.wikipedia.org/wiki/BMP_file_format#:~:text=The%20BMP%20file%20format%2C%20also,and%20OS%2F2%20operating%20systems. 
 5. Acceder a una variable de otra clase: https://programmerclick.com/article/14131486210/
-6. Algoritmo de LineaBresenham: https://es.wikipedia.org/wiki/Algoritmo_de_Bresenham#:~:text=El%20Algoritmo%20de%20Bresenham%20es,solo%20realiza%20cálculos%20con%20enteros.
+6. Algoritmo de Lineas Bresenham: https://es.wikipedia.org/wiki/Algoritmo_de_Bresenham#:~:text=El%20Algoritmo%20de%20Bresenham%20es,solo%20realiza%20cálculos%20con%20enteros.
 7. Simular un do-while: https://www.freecodecamp.org/espanol/news/python-bucle-do-while-ejemplos-de-bucles/#:~:text=Para%20crear%20un%20bucle%20do%20while%20en%20Python%2C%20necesitas%20modificar,verdadero%20se%20ejecutará%20otra%20vez.
 """
 
@@ -169,32 +169,54 @@ def glVertex(x, y): #Función que pueda cambiar el color de un punto de la panta
     Rend2.Vertex(movx, movy) #Creando el punto.
 
 #Función que crea una línea entre dos puntos. Esta tiene que estar en el rango de 0 a 1.
-def glLine(X1, Y1, X2, Y2):
-
-    #Ubicar un punto en el viewport.
-    global ancho, alto, equis, ye #Variables globales que se usarán para definir el área de la imagen sobre la que se va a poder dibujar el punto.
-
-    #Verifiando las propiedades del viewport.
-    print(ancho, alto, equis, ye)
-    
-    #Obteniendo el centro del viewport.
-    x0 = int(equis + (ancho/2))
-    y0 = int(ye + (alto/2))
+def glLine(x0, y0, x1, y1):
 
     #Moviendo el punto a la posición deseada.
-    movx1 = x0 + int(X1 * (ancho/2))
-    movy1 = y0 + int(Y1 * (alto/2))
-    movx2 = x0 + int(X2 * (ancho/2))
-    movy2 = y0 + int(Y2 * (alto/2))
+    dy = abs(y1 - y0)
+    dx = abs(x1 - x0)
 
     #Debuggeo.
-    print("Posiciones del punto trasladado ", movx1, movy1, movx2, movy2)
+    print("Cambio en y y cambio en x ", dy, dx)
 
-    #print("Hola ", movx1, movy1, movx2, movy2) #Debugging.
+    steep = dy > dx #Verificando si la línea es vertical o horizontal.
 
-    for x in range(movx1, movx2):
-        for y in range(movy1, movy2):
-            Rend2.Vertex(x, y)
+    if steep: #Si la línea es vertical, entonces se cambia el orden de los puntos.
+        x0, y0 = y0, x0
+        x1, y1 = y1, x1
+
+
+    if x0 > x1: #Si el punto inicial es mayor que el final, entonces se cambia el orden de los puntos.
+        x0, x1 = x1, x0
+        y0, y1 = y1, y0
+    
+    #Calculando el traslado luego del cambio.
+    dx = x1 - x0
+    dy = y1 - y0
+    offset = 0
+    threshold = dx
+    y = y0
+
+     #Obteniendo el centro del viewport.
+    Cx = int(x0 + (ancho/2))
+    Cx1 = int(x1 + (ancho/2))
+
+    #Moviendo el punto a la posición deseada.
+    movx = Cx + int(x0 * (ancho/2))
+    movx1 = Cx1 + int(x1 * (ancho/2))
+    
+    #Haciendo la línea.
+    for x in range(movx, movx1 + 1):
+
+        offset += dy * 2 #Incrementando el offset.
+
+        if offset >= threshold: #Si el offset es mayor o igual que el threshold, entonces se cambia el valor de y.
+            y += 1 if y0 < y1 else -1
+            threshold += 2 * dx
+ 
+        if steep: #
+            Rend2.Vertex(int(y), x)
+        else:
+            Rend2.Vertex(x, int(y))
 
     #Rend2.Line(movx1, movy1, movx2, movy2) #Creando el punto.
 

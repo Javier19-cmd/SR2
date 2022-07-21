@@ -20,10 +20,10 @@ def main():
     posy = 250
 
     glViewPort(posx, posy, ancho, alto) #Definiendo el área de la imagen sobre la que se va a poder dibujar.
-    glColor(0.2, 0.2, 0.1) #Definiendo el color del punto.
+    glColor(0.8, 0.2, 0.1) #Definiendo el color del punto.
     #glVertex(1, 1) #Definiendo el punto inicial del punto.
     #x0, y0, x1, y1 = 0, 0, 1, 1
-    glLine(0.003, 0.005, 0.007, 0.009) #Dibujando la línea.
+    glLine(0.8, 0.5, 1, 1) #Dibujando la línea.
     glFinish() #Escribiendo la ventana.
 
 main()
