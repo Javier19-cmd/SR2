@@ -225,16 +225,16 @@ def glLine(x0, y0, x1, y1):
     #Dibujando la línea.
     for x in range(movx1, movx2):
         
-        offset += dy * 2
-        if offset >= threshold:
+        offset += dy * 2 #Cambiando el offset.
+        if offset >= threshold: #Si el offset es mayor o igual al umbral, entonces se cambia la coordenada y.
             y += 1 if movy1 < movy2 else -1
             threshold += 2 * dx
 
-        if steep:
+        if steep: #Si la línea es vertical, entonces se cambia el orden de los puntos.
             #print(y, x)
             Rend2.Line(y, x)
             #Rend2.Vertex(y, x)
-        else:
+        else: #Si la línea es horizontal, entonces se cambia el orden de los puntos.
             #print(x, y)
             Rend2.Line(x, y)
             #Rend2.Vertex(x, y)
