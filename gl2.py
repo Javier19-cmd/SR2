@@ -170,82 +170,34 @@ def glVertex(x, y): #Función que pueda cambiar el color de un punto de la panta
 
 #Función que crea una línea entre dos puntos. Esta tiene que estar en el rango de 0 a 1.
 def glLine(X1, Y1, X2, Y2):
+
     #Ubicar un punto en el viewport.
     global ancho, alto, equis, ye #Variables globales que se usarán para definir el área de la imagen sobre la que se va a poder dibujar el punto.
 
+    #Verifiando las propiedades del viewport.
+    print(ancho, alto, equis, ye)
+    
     #Obteniendo el centro del viewport.
     x0 = int(equis + (ancho/2))
     y0 = int(ye + (alto/2))
 
-    #Distancia que se desplaza en cada eje.
-    dY = Y2 - Y1
-    dX = X2 - X1
+    #Moviendo el punto a la posición deseada.
+    movx1 = x0 + int(X1 * (ancho/2))
+    movy1 = y0 + int(Y1 * (alto/2))
+    movx2 = x0 + int(X2 * (ancho/2))
+    movy2 = y0 + int(Y2 * (alto/2))
 
-    # 1. Incrementos para las secciones con avance inclinado.
-    if dY >= 0: #Si la distancia en el eje Y es mayor a 0, entonces se incrementa en 1.
-        IncYi = 1 #Incremento inclinado.
-    else: #Si la distancia en el eje Y es menor a 0, entonces se incrementa en -1.
-        dY = -dY
-        IncYi = -1 #Incremento inclinado.
+    #Debuggeo.
+    print("Posiciones del punto trasladado ", movx1, movy1, movx2, movy2)
 
-    if dX >= 0: #Si la distancia en el eje X es mayor a 0, entonces se incrementa en 1.
-        IncXi = 1 #Incremento inclinado.
-    else: #Si la distancia en el eje X es menor a 0, entonces se incrementa en -1.
-        dX = -dX
-        IncXi = -1 #Incremento inclinado.
-    
-    # 2. Incrementos para las secciones con avance recto.
-    if dX >= dY:
-        IncYr = 0 #Incremento recto.
-        IncXr = IncXi #Incremento recto.
-    else:
-        IncXr = 0
-        IncYr = IncYi
+    #print("Hola ", movx1, movy1, movx2, movy2) #Debugging.
 
-        #Cuando dY es mayor que dX, se intercambian, para reutiliar el código.
-        dX, dY = dY, dX
-    
-    # 3. Inicializando valores (y de error)
-    x = X1 #Coordenada X del punto inicial.
-    y = Y1 #Coordenada Y del punto inicial.
-    avR = 2 * dY #Avance recto.
-    av = (avR - dX) #Avance recto.
-    avI = av - dX #Avance inclinado.
+    for x in range(movx1, movx2):
+        for y in range(movy1, movy2):
+            Rend2.Vertex(x, y)
 
-    #Verificando los valores.
-    print("dX: ", x)
-    print("dY: ", y)
-    print("av: ", av)
-    print("avR: ", avR)
-    print("avI: ", avI)
+    #Rend2.Line(movx1, movy1, movx2, movy2) #Creando el punto.
 
-    # 4. Dibujando la línea. 
-    while x != X2:
-         # if x <= X2: #Si el punto actual es el punto final, entonces se termina el ciclo.
-        #     break
-
-        print("Hola ", x, y)
-        
-        #Moviendo el punto a la posición deseada.
-        movx = x0 + int(x * (ancho/2))
-        movy = y0 + int(y * (alto/2))
-
-        print("Movimientos: ", movx, movy)
-
-        Rend2.Line(movx, movy) #Creando la línea.
-
-        print(av, "") #Debuggeo para ver los valores de error global que aparecen.
-
-        if av >= 0: #Aavance inclinado.
-
-            x = x + IncXi #X aumenta en inclinado.
-            y = y + IncYi #Y aumenta en inclinado.
-            av = av + avI #Avance inclinado.
-        
-        else: #Avance recto.
-            x = x + IncXr #X aumenta en recto.
-            y = y + IncYr #Y aumenta en recto.
-            av = av + avR #Avance recto.
 
 def glColor(r, g, b): #Función con la que se pueda cambiar el color con el que funciona glVertex(). Los parámetros deben ser números en el rango de 0 a 1.
     

@@ -172,7 +172,7 @@ def Line(x, y):
     framebuffer[equis][ye] = colorA
 
     print("Coordenadas del punto en el framebuffer: ", equis, ye)
-    print("Color del punto: ", framebuffer[equis][ye])
+    #print("Color del punto: ", framebuffer[equis][ye])
 
 #Método que escribe el archivo bmp.
 def write():
