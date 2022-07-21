@@ -223,16 +223,18 @@ def glLine(x0, y0, x1, y1):
             movy += 1 if movy < movy1 else -1
             threshold += 2 * dx
 
-            print(x)
-
         movy += 1 #Incrementando el movimiento en y.
+        movx += 1 #Incrementando el movimiento en x.
  
         if steep: #Si la línea es vertical, entonces se cambia el orden de los puntos.
             print("Movimiento en y", movy)
-            Rend2.Vertex(movy, x)
+            print("Movimiento en x", movx)
+            Rend2.Vertex(movy, movx)
+            #Rend2.Vertex(movy, x)
         else: #Si la línea es horizontal, entonces se cambia el orden de los puntos.
             print("Movimiento en y ", movy)
-            Rend2.Vertex(x, movy)
+            Rend2.Vertex(movx, movy)
+            #Rend2.Vertex(x, movy)
 
     #Rend2.Line(movx1, movy1, movx2, movy2) #Creando el punto.
 
