@@ -171,8 +171,9 @@ def Line(x, y):
     #Colocar el punto en el viewport.
     framebuffer[equis][ye] = colorA
 
-    print("Coordenadas del punto en el framebuffer: ", equis, ye)
-    #print("Color del punto: ", framebuffer[equis][ye])
+
+    #print("Coordenadas del punto: ", equis, ye)
+    print("Punto: ", framebuffer[equis][ye])
 
 #Método que escribe el archivo bmp.
 def write():
