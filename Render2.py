@@ -155,7 +155,7 @@ def Vertex(x, y):
     framebuffer[equis][ye] = colorA
 
 
-    print("Coordenadas del punto: ", equis, ye)
+    #print("Coordenadas del punto: ", equis, ye)
     print("Punto: ", framebuffer[equis][ye])
 
 def Line(x, y):
