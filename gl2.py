@@ -170,73 +170,71 @@ def glVertex(x, y): #Función que pueda cambiar el color de un punto de la panta
 
 #Función que crea una línea entre dos puntos. Esta tiene que estar en el rango de 0 a 1.
 def glLine(x0, y0, x1, y1):
+    global ancho, alto, equis, ye #Variables globales que se usarán para definir el área de la imagen sobre la que se va a poder dibujar el punto.
+
+    #Verifiando las propiedades del viewport.
+    print(ancho, alto, equis, ye)
+    
+    #Obteniendo el centro del viewport.
+    x = int(equis + (ancho/2))
+    y = int(ye + (alto/2))
+
+    #Obteniendo las coordenadas de x0 y y0 con respecto al viewport.
+    movx1 = x + int(x0 * (ancho/2))
+    movy1 = y + int(y0 * (alto/2))
+
+    #Obteniendo las coordenadas de x1 y y1 con respecto al viewport.
+    movx2 = x + int(x1 * (ancho/2))
+    movy2 = y + int(y1 * (alto/2))
 
     #Moviendo el punto a la posición deseada.
     dy = abs(y1 - y0)
     dx = abs(x1 - x0)
 
+    #Prueba.
+    dx1 = abs(movx2 - movx1)
+    dy2 = abs(movy2 - movy1)
+
     #Debuggeo.
-    print("Cambio en y y cambio en x ", dy, dx)
+    #print("Cambio en y y cambio en x ", dy, dx)
+    print("Cambio en y y cambio en x ", dx1, dy2)
+
 
     steep = dy > dx #Verificando si la línea es vertical o horizontal.
 
     if steep: #Si la línea es vertical, entonces se cambia el orden de los puntos.
-        x0, y0 = y0, x0
-        x1, y1 = y1, x1
-
-
-    if x0 > x1: #Si el punto inicial es mayor que el final, entonces se cambia el orden de los puntos.
-        x0, x1 = x1, x0
-        y0, y1 = y1, y0
+        movx1, movy1 = movy1, movx1
+        movx2, movy2 = movy2, movx2
     
-    #Calculando el traslado luego del cambio.
-    dx = x1 - x0
-    dy = y1 - y0
-    offset = 0
-    threshold = dx
-    y = y0
+    if movx1 > movx2: #Si el punto 1 está a la derecha del punto 2, entonces se cambia el orden de los puntos.
+        movx1, movx2 = movx2, movx1
+        movy1, movy2 = movy2, movy1
 
-    print("y antes del for loop", y)
+    #Calculando los nuevos cambios.
+    dx = abs(movx2 - movx1)
+    dy = abs(movy2 - movy1)
 
-     #Obteniendo el centro del viewport.
-    Cx = int(x0 + (ancho/2))
-    Cx1 = int(x1 + (ancho/2))
+    offset = 0 #Offset de la línea.
+    threshold = dx #Umbral de la línea.	
+    y = movy1 #Coordenada y de la línea.
 
-    Cy = int(y0 + (alto/2))
-    Cy1 = int(y1 + (alto/2))
+    #Verificando las variables.
+    print("Offset, threshold, y ",offset, threshold, y)
 
-    #Moviendo el punto a la posición deseada.
-    movx = Cx + int(x0 * (ancho/2))
-    movx1 = Cx1 + int(x1 * (ancho/2))
-
-    movy = Cy + int(y0 * (alto/2))
-    movy1 = Cy1 + int(y1 * (alto/2))
-
-    print("Movimientos en x antes del for loop", movx, movx1)
-    
-    #Haciendo la línea.
-    for x in range(movx, movx1):
-
-        offset += dy * 2 #Incrementando el offset.
-
-        if offset >= threshold: #Si el offset es mayor o igual que el threshold, entonces se cambia el valor de y.
-            movy += 1 if movy < movy1 else -1
+    #Dibujando la línea.
+    for x in range(movx1, movx2):
+        
+        offset += dy * 2
+        if offset >= threshold:
+            y += 1 if movy1 < movy2 else -1
             threshold += 2 * dx
 
-        movy += 1 #Incrementando el movimiento en y.
-        movx += 1 #Incrementando el movimiento en x.
- 
-        if steep: #Si la línea es vertical, entonces se cambia el orden de los puntos.
-            print("Movimiento en y", movy)
-            print("Movimiento en x", movx)
-            Rend2.Vertex(movy, movx)
-            #Rend2.Vertex(movy, x)
-        else: #Si la línea es horizontal, entonces se cambia el orden de los puntos.
-            print("Movimiento en y ", movy)
-            Rend2.Vertex(movx, movy)
-            #Rend2.Vertex(x, movy)
-
-    #Rend2.Line(movx1, movy1, movx2, movy2) #Creando el punto.
+        if steep:
+            #print(y, x)
+            Rend2.Vertex(y, x)
+        else:
+            #print(x, y)
+            Rend2.Vertex(x, y)
 
 
 def glColor(r, g, b): #Función con la que se pueda cambiar el color con el que funciona glVertex(). Los parámetros deben ser números en el rango de 0 a 1.
