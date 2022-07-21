@@ -194,14 +194,14 @@ def glLine(x0, y0, x1, y1):
 
     #Prueba.
     dx1 = abs(movx2 - movx1)
-    dy2 = abs(movy2 - movy1)
+    dy1 = abs(movy2 - movy1)
 
     #Debuggeo.
     #print("Cambio en y y cambio en x ", dy, dx)
-    print("Cambio en y y cambio en x ", dx1, dy2)
+    print("Cambio en y y cambio en x ", dx1, dy1)
 
 
-    steep = dy > dx #Verificando si la línea es vertical o horizontal.
+    steep = dy1 > dx1 #Verificando si la línea es vertical o horizontal.
 
     if steep: #Si la línea es vertical, entonces se cambia el orden de los puntos.
         movx1, movy1 = movy1, movx1
