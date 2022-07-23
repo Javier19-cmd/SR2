@@ -9,10 +9,10 @@ casa = [
     [0.3, -0.1, 0.5, 0.1], #Techo formal. (Parte izquierda)
     [0.5, 0.1, 0.7, -0.1], #Techo formal. (Parte derecha)
     [-0.1, -0.2, -0.1, 0.1], #Pared de la izquierda. (Fondo)
-    #[0.2, 0, 0.2, 0.1], #Pared de la derecha. (Fondo)
     [-0.1, 0.1, 0.2, 0.1], #Pared de arriba. (Fondo)
     [0.3, -0.5, -0.1, -0.2], #Haciendo unión. (Pared de la izquierda)
-    [0.3, -0.1, -0.1, 0.1] #Haciendo unión. (Pared de la izquierda, parte de arriba)
+    [0.3, -0.1, -0.1, 0.1], #Haciendo unión. (Pared de la izquierda, parte de arriba)
+    [-0.1, 0.1, 0.1, 0.3] #Haciendo techo del fondo. (Parte izquierda)
 ]
 
 def main():
@@ -49,6 +49,9 @@ def main():
     glLine(0.3, -0.5, -0.1, -0.2) #Haciendo primera unión. (Pared izquierda)
     glLine(0.3, -0.1, -0.1, 0.1) #Haciendo segunda unión. (Pared izquierda, parte de arriba)
     glLine(0.7, -0.1, 0.2, 0.1) #Haciendo tercera unión. (Pared derecha, parte de arriba)
+    glLine(-0.1, 0.1, 0.044, 0.3) #Haciendo el techo del fondo. (Parte izquierda)
+    glLine(0.2, 0.1, 0.05, 0.3) #Haciendo el techo del fondo. (Parte derecha)
+    glLine()
     glFinish() #Escribiendo la ventana.
 
 main()
