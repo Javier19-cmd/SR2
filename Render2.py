@@ -152,11 +152,11 @@ def Vertex(x, y):
     #print(equis, ye)
 
     #Colocar el punto en el viewport.
-    framebuffer[equis][ye] = colorA
+    framebuffer[ye][equis] = colorA
 
 
-    #print("Coordenadas del punto: ", equis, ye)
-    print("Punto: ", framebuffer[equis][ye])
+    print("Coordenadas del punto: ", ye, equis)
+    print("Punto: ", framebuffer[ye][equis])
 
 """
 def Line(x, y):
@@ -218,9 +218,9 @@ def write():
         #         f.write(framebuffer[y][x])
 
         #Pintando el archivo de color negro.
-        for x in range(anchoP):
-            for y in range(altoP):
-                f.write(framebuffer[x][y])
+        for y in range(altoP):
+            for x in range(anchoP):
+                f.write(framebuffer[y][x])
 
         #print(framebuffer)
         #print("Lista temporal en write", lista)

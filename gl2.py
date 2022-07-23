@@ -192,13 +192,15 @@ def glLine(x0, y0, x1, y1):
     # dy = abs(y1 - y0)
     # dx = abs(x1 - x0)
 
+    print("Posiciones del viewport ", equis, ye)
+
     #Prueba.
     dx1 = abs(movx2 - movx1)
     dy1 = abs(movy2 - movy1)
 
     #Debuggeo.
     #print("Cambio en y y cambio en x ", dy, dx)
-    print("Cambio en y y cambio en x ", dx1, dy1)
+    print("Cambio en x y cambio en y ", dx1, dy1)
 
 
     steep = dy1 > dx1 #Verificando si la línea es vertical o horizontal.
@@ -236,11 +238,13 @@ def glLine(x0, y0, x1, y1):
         if steep: #Si la línea es vertical, entonces se cambia el orden de los puntos.
             print(y, x)
             #Rend2.Line(y, x)
+            print("Puntos dados en decimales ", x0, y0, x1, y1)
             Rend2.Vertex(y, x)
             #glVertex(y, x)
         else: #Si la línea es horizontal, entonces se cambia el orden de los puntos.
             #print(x, y)
             #Rend2.Line(x, y)
+            print("Puntos dados en decimales ", x0, y0, x1, y1)
             Rend2.Vertex(x, y)
             #glVertex(x, y)
 
