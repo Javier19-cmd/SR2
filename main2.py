@@ -44,14 +44,13 @@ def main():
     glLine(0.3, -0.1, 0.5, 0.1) #Haciendo quinta línea. (Techo)
     glLine(0.5, 0.1, 0.7, -0.1) #Haciendo sexta línea. (Techo)
     glLine(-0.1, -0.2, -0.1, 0.1) #Haciendo fondo. (Pared de la izquierda)
-    #glLine(0.2, 0, 0.2, 0.1) #Haciendo fondo. (Pared de la derecha)
     glLine(-0.1, 0.1, 0.2, 0.1) #Haciendo fondo. (techo del fondo)
     glLine(0.3, -0.5, -0.1, -0.2) #Haciendo primera unión. (Pared izquierda)
     glLine(0.3, -0.1, -0.1, 0.1) #Haciendo segunda unión. (Pared izquierda, parte de arriba)
     glLine(0.7, -0.1, 0.2, 0.1) #Haciendo tercera unión. (Pared derecha, parte de arriba)
     glLine(-0.1, 0.1, 0.044, 0.3) #Haciendo el techo del fondo. (Parte izquierda)
     glLine(0.2, 0.1, 0.05, 0.3) #Haciendo el techo del fondo. (Parte derecha)
-    glLine()
+    glLine(0.5, 0.1, 0.044, 0.3) #Haciendo unión de los techos.
     glFinish() #Escribiendo la ventana.
 
 main()
