@@ -2,17 +2,20 @@ from gl2 import *
 
 #Matriz de puntos a utilizar.
 casa = [
-    [0.3, -0.5, 0.3, -0.1], #Pared 1.
-    [0.7, -0.5, 0.7, -0.1], #Pared 2.
-    [0.3, -0.5, 0.7, -0.5], #Suelo.
-    [0.3, -0.1, 0.7, -0.1], #Techito.
-    [0.3, -0.1, 0.5, 0.1], #Techo formal. (Parte izquierda)
-    [0.5, 0.1, 0.7, -0.1], #Techo formal. (Parte derecha)
-    [-0.1, -0.2, -0.1, 0.1], #Pared de la izquierda. (Fondo)
-    [-0.1, 0.1, 0.2, 0.1], #Pared de arriba. (Fondo)
-    [0.3, -0.5, -0.1, -0.2], #Haciendo unión. (Pared de la izquierda)
-    [0.3, -0.1, -0.1, 0.1], #Haciendo unión. (Pared de la izquierda, parte de arriba)
-    [-0.1, 0.1, 0.1, 0.3] #Haciendo techo del fondo. (Parte izquierda)
+    [0.3, -0.5, 0.3, -0.1], #Haciendo primera línea. (Pared izquierda)
+    [0.7, -0.5, 0.7, -0.1], #Haciendo segunda línea. (Pared derecha)
+    [0.3, -0.5, 0.7, -0.5], #Haciendo tercera línea. (Piso de abajo)
+    [0.3, -0.1, 0.7, -0.1], #Haciendo cuarta línea. (Techito)
+    [0.3, -0.1, 0.5, 0.1], #Haciendo quinta línea. (Techo)
+    [0.5, 0.1, 0.7, -0.1], #Haciendo sexta línea. (Techo)
+    [-0.1, -0.2, -0.1, 0.1], #Haciendo fondo. (Pared de la izquierda)
+    [-0.1, 0.1, 0.2, 0.1], #Haciendo fondo. (techo del fondo)
+    [0.3, -0.5, -0.1, -0.2], #Haciendo primera unión. (Pared izquierda)
+    [0.3, -0.1, -0.1, 0.1], #Haciendo segunda unión. (Pared izquierda, parte de arriba)
+    [0.7, -0.1, 0.2, 0.1], #Haciendo tercera unión. (Pared derecha, parte de arriba)
+    [-0.1, 0.1, 0.044, 0.3], #Haciendo el techo del fondo. (Parte izquierda)
+    [0.2, 0.1, 0.05, 0.3], #Haciendo el techo del fondo. (Parte derecha)
+    [0.5, 0.1, 0.044, 0.3] #Haciendo unión de los techos.
 ]
 
 def main():
@@ -51,6 +54,7 @@ def main():
     glLine(-0.1, 0.1, 0.044, 0.3) #Haciendo el techo del fondo. (Parte izquierda)
     glLine(0.2, 0.1, 0.05, 0.3) #Haciendo el techo del fondo. (Parte derecha)
     glLine(0.5, 0.1, 0.044, 0.3) #Haciendo unión de los techos.
+
     glFinish() #Escribiendo la ventana.
 
 main()
