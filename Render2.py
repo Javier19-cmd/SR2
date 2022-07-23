@@ -152,11 +152,11 @@ def Vertex(x, y):
     #print(equis, ye)
 
     #Colocar el punto en el viewport.
-    framebuffer[equis][ye] = colorA
+    framebuffer[ye][equis] = colorA
 
 
     #print("Coordenadas del punto: ", equis, ye)
-    print("Punto: ", framebuffer[equis][ye])
+    print("Punto: ", framebuffer[ye][equis])
 
 """
 def Line(x, y):

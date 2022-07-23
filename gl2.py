@@ -230,6 +230,9 @@ def glLine(x0, y0, x1, y1):
             y += 1 if movy1 < movy2 else -1
             threshold += 2 * dx
 
+            print("Punto 1: ", movx1, movy1)
+            print("Punto 2: ", movx2, movy2)
+
         if steep: #Si la línea es vertical, entonces se cambia el orden de los puntos.
             #print(y, x)
             #Rend2.Line(y, x)
