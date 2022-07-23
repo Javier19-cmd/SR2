@@ -189,8 +189,8 @@ def glLine(x0, y0, x1, y1):
     movy2 = y + int(y1 * (alto/2))
 
     #Moviendo el punto a la posición deseada.
-    dy = abs(y1 - y0)
-    dx = abs(x1 - x0)
+    # dy = abs(y1 - y0)
+    # dx = abs(x1 - x0)
 
     #Prueba.
     dx1 = abs(movx2 - movx1)
@@ -220,7 +220,7 @@ def glLine(x0, y0, x1, y1):
     y = movy1 #Coordenada y de la línea.
 
     #Verificando las variables.
-    print("Offset, threshold, y ",offset, threshold, y)
+    #print("Offset, threshold, y ",offset, threshold, y)
 
     #Dibujando la línea.
     for x in range(movx1, movx2):
@@ -230,11 +230,11 @@ def glLine(x0, y0, x1, y1):
             y += 1 if movy1 < movy2 else -1
             threshold += 2 * dx
 
-            print("Punto 1: ", movx1, movy1)
-            print("Punto 2: ", movx2, movy2)
+            print("Punto inicial: ", movx1, movy1)
+            print("Punto final: ", movx2, movy2)
 
         if steep: #Si la línea es vertical, entonces se cambia el orden de los puntos.
-            #print(y, x)
+            print(y, x)
             #Rend2.Line(y, x)
             Rend2.Vertex(y, x)
             #glVertex(y, x)
