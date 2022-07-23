@@ -1,5 +1,20 @@
 from gl2 import *
 
+#Matriz de puntos a utilizar.
+puntos = [
+    [0.3, -0.5, 0.3, -0.1], #Pared 1.
+    [0.7, -0.5, 0.7, -0.1], #Pared 2.
+    [0.3, -0.5, 0.7, -0.5], #Suelo.
+    [0.3, -0.1, 0.7, -0.1], #Techito.
+    #[0.3, -0.1, 0.5, 0.1], #Techo formal. (Parte izquierda)
+    #[0.5, 0.1, 0.7, -0.1], #Techo formal. (Parte derecha)
+    [-0.1, -0.2, -0.1, 0.1], #Pared de la izquierda. (Fondo)
+    [0.2, 0, 0.2, 0.1], #Pared de la derecha. (Fondo)
+    [-0.1, 0.1, 0.2, 0.1] #Pared de arriba. (Fondo)
+
+
+
+]
 
 def main():
 
@@ -23,8 +38,15 @@ def main():
     glColor(0.8, 0.2, 0.1) #Definiendo el color del punto.
     #glVertex(1, 1) #Definiendo el punto inicial del punto.
     #       x0,   y0,   x1,   y1
-    glLine(0.2, -0.3, 0.2, 0.2) #Haciendo primera línea.
-    #glLine(0, 0, 0.3, 0.3) #Haciendo segunda línea.
+    glLine(0.3, -0.5, 0.3, -0.1) #Haciendo primera línea. (Pared izquierda)
+    glLine(0.7, -0.5, 0.7, -0.1) #Haciendo segunda línea. (Pared derecha)
+    glLine(0.3, -0.5, 0.7, -0.5) #Haciendo tercera línea. (Piso de abajo)
+    glLine(0.3, -0.1, 0.7, -0.1) #Haciendo cuarta línea. (Techito)
+    #glLine(0.3, -0.1, 0.5, 0.1) #Haciendo quinta línea. (Techo)
+    #glLine(0.5, 0.1, 0.7, -0.1) #Haciendo sexta línea. (Techo)
+    glLine(-0.1, -0.2, -0.1, 0.1) #Haciendo fondo. (Pared de la izquierda)
+    glLine(0.2, 0, 0.2, 0.1) #Haciendo fondo. (Pared de la derecha)
+    glLine(-0.1, 0.1, 0.2, 0.1) #Haciendo fondo. (Pared de arriba)
     glFinish() #Escribiendo la ventana.
 
 main()
