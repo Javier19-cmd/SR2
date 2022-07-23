@@ -1,19 +1,18 @@
 from gl2 import *
 
 #Matriz de puntos a utilizar.
-puntos = [
+casa = [
     [0.3, -0.5, 0.3, -0.1], #Pared 1.
     [0.7, -0.5, 0.7, -0.1], #Pared 2.
     [0.3, -0.5, 0.7, -0.5], #Suelo.
     [0.3, -0.1, 0.7, -0.1], #Techito.
-    #[0.3, -0.1, 0.5, 0.1], #Techo formal. (Parte izquierda)
-    #[0.5, 0.1, 0.7, -0.1], #Techo formal. (Parte derecha)
+    [0.3, -0.1, 0.5, 0.1], #Techo formal. (Parte izquierda)
+    [0.5, 0.1, 0.7, -0.1], #Techo formal. (Parte derecha)
     [-0.1, -0.2, -0.1, 0.1], #Pared de la izquierda. (Fondo)
-    [0.2, 0, 0.2, 0.1], #Pared de la derecha. (Fondo)
-    [-0.1, 0.1, 0.2, 0.1] #Pared de arriba. (Fondo)
-
-
-
+    #[0.2, 0, 0.2, 0.1], #Pared de la derecha. (Fondo)
+    [-0.1, 0.1, 0.2, 0.1], #Pared de arriba. (Fondo)
+    [0.3, -0.5, -0.1, -0.2], #Haciendo unión. (Pared de la izquierda)
+    [0.3, -0.1, -0.1, 0.1] #Haciendo unión. (Pared de la izquierda, parte de arriba)
 ]
 
 def main():
@@ -42,11 +41,14 @@ def main():
     glLine(0.7, -0.5, 0.7, -0.1) #Haciendo segunda línea. (Pared derecha)
     glLine(0.3, -0.5, 0.7, -0.5) #Haciendo tercera línea. (Piso de abajo)
     glLine(0.3, -0.1, 0.7, -0.1) #Haciendo cuarta línea. (Techito)
-    #glLine(0.3, -0.1, 0.5, 0.1) #Haciendo quinta línea. (Techo)
-    #glLine(0.5, 0.1, 0.7, -0.1) #Haciendo sexta línea. (Techo)
+    glLine(0.3, -0.1, 0.5, 0.1) #Haciendo quinta línea. (Techo)
+    glLine(0.5, 0.1, 0.7, -0.1) #Haciendo sexta línea. (Techo)
     glLine(-0.1, -0.2, -0.1, 0.1) #Haciendo fondo. (Pared de la izquierda)
-    glLine(0.2, 0, 0.2, 0.1) #Haciendo fondo. (Pared de la derecha)
-    glLine(-0.1, 0.1, 0.2, 0.1) #Haciendo fondo. (Pared de arriba)
+    #glLine(0.2, 0, 0.2, 0.1) #Haciendo fondo. (Pared de la derecha)
+    glLine(-0.1, 0.1, 0.2, 0.1) #Haciendo fondo. (techo del fondo)
+    glLine(0.3, -0.5, -0.1, -0.2) #Haciendo primera unión. (Pared izquierda)
+    glLine(0.3, -0.1, -0.1, 0.1) #Haciendo segunda unión. (Pared izquierda, parte de arriba)
+    glLine(0.7, -0.1, 0.2, 0.1) #Haciendo tercera unión. (Pared derecha, parte de arriba)
     glFinish() #Escribiendo la ventana.
 
 main()
