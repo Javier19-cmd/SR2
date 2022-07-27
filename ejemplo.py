@@ -175,6 +175,7 @@ class Obj(object):
             for line in self.lines:
                 prefix, value = line.split(' ', 1) #Separa en el primer espacio.
 
+                
                 if prefix == 'v': #Si es un vértice.
                     self.vertices.append(
                         list(
