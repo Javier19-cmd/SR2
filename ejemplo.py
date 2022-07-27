@@ -87,8 +87,11 @@ class Render(object):
 
     #Función que dibuja un punto en la pantalla. Esta es una función de bajo nivel. 
     def point(self, x, y): 
-        #Esta función dibuja un punto en la pantalla.
-        self.framebuffer[y][x] = self.current_color #El color del punto es el color actual.
+
+        if (0 < x < self.width) and (0 < y < self.height):
+
+            #Esta función dibuja un punto en la pantalla.
+            self.framebuffer[y][x] = self.current_color #El color del punto es el color actual.
     
 
 r = Render(100, 100) #Crea un objeto render con un tamaño de 1024x1024.
@@ -115,6 +118,7 @@ for x in range(300, 400):
     for y in range(300, 400):
         r.point(x, y) #Dibuja un cuadrado en la pantalla.
 """
+
 
 def line(x0, y0, x1, y1): #Función que dibuja una línea.
     
@@ -166,9 +170,45 @@ def line(x0, y0, x1, y1): #Función que dibuja una línea.
      #   #i += 0.0001 #Número sacado de la manga.
      #   i += 0.1 #Número sacado de la manga.
 
+#Matriz para dibujar un cuadrando.
+square = [
+    [100, 100],
+    [200, 100],
+    [200, 200],
+    [100, 100]
+]
+
+center = (150, 150)
+
+square_large = [
+    ((x - center[0]) * 0.5,
+     (y - center[1]) * 0.5) 
+    for x, y, in square
+]
+
+
+#Trasladar el cuadrado a la derecha.
+square_right = [
+    [199, 100],
+    [199, 100],
+    [199, 200],
+    [199, 100]
+]
+
+tsquare = square_large
+
+
+#Último punto.
+last_point = tsquare[-1]
+
+
+#Dibujar el cuadrado.
+for point in square: 
+    line(*last_point, *point)
+    last_point = point
 
 #r.point(10, 10) #Dibuja un punto en la pantalla.
-line(13, 20, 50, 50) #Dibuja una línea en la pantalla.
+#line(13, 20, 50, 50) #Dibuja una línea en la pantalla.
 #line(20, 13, 40, 80) #Dibuja una línea en la pantalla.
 #line(80, 40, 13, 20) #Dibuja una línea en la pantalla.
 r.write("a.bmp") #Escribe el archivo. El nombre del archivo es a.bmp, porque se le pasa una cadena de caracteres.
