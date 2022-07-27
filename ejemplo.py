@@ -161,7 +161,37 @@ def line(x0, y0, x1, y1): #Función que dibuja una línea.
         else: #Si la línea es más alta que ancha.
             r.point(x, y)
 
-    
+
+class Obj(object):
+    def __init__(self, filename):
+        with open(filename) as f: 
+            #Dado un archivo, lee todo el archivo y lo guarda en una lista.
+            self.lines = f.read().splitlines()
+
+            #Por el momento, sólo se trabajará con los vértices.
+            self.vertices = []
+            self.faces = []
+
+            for line in self.lines:
+                prefix, value = line.split(' ', 1) #Separa en el primer espacio.
+
+                if prefix == 'v': #Si es un vértice.
+                    self.vertices.append(
+                        list(
+                            map(float, value.split(' ')
+                            )
+                        )
+                    )
+                
+                if prefix == 'f': #Si es una cara.
+                    self.faces.append(
+                        list(
+                            map(
+                                float, value.split(' ')
+                            )
+                        )
+                    )
+
     #i = 0
     #while i <= 1:
      #   x = x0 + i * (x1 - x0)
@@ -206,6 +236,8 @@ last_point = tsquare[-1]
 for point in square: 
     line(*last_point, *point)
     last_point = point
+
+o = Obj("obj.obj")
 
 #r.point(10, 10) #Dibuja un punto en la pantalla.
 #line(13, 20, 50, 50) #Dibuja una línea en la pantalla.
