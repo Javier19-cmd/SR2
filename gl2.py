@@ -225,7 +225,7 @@ def glLine(x0, y0, x1, y1):
     #print("Offset, threshold, y ",offset, threshold, y)
 
     #Dibujando la línea.
-    for x in range(movx1, movx2):
+    for x in range(movx1, movx2 + 1):
         
         offset += dy * 2 #Cambiando el offset.
         if offset >= threshold: #Si el offset es mayor o igual al umbral, entonces se cambia la coordenada y.
